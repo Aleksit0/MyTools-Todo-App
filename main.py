@@ -20,7 +20,15 @@ def remove_features(X, Y):
 
 # MODEL TRAINING
 def compute_cost(W, X, Y):
-  pass
+  # CALCULATE HINGE LOSS
+  N = X.shape[0]
+  distances = 1 - Y * (np.dot(X, W))
+  distances[distances < 0] = 0
+  hinge_loss = reg_strenght * (np.sum(distances) / N)
+
+  # CALCULATE LOSS
+  cost = 1 / 2 * np.dot(W, W) + hinge_loss
+  return cost
 
 def calculate_cost_gradient(W, X_batch, Y_batch):
   pass
