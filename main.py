@@ -43,6 +43,9 @@ def init():
   X_norm = MinMaxScaler().fit_transform(X.values)
   X = pd.DataFrame(X_norm)
 
-  print(data)
+  # SPLITTING THE DATASET INTO "TRAIN" AND "TEST" DATASET
+  # INSERT 1 IN EVERY ROW FOR INTERCEPT B
+  X.insert(loc = len(X.columns), column = 'intercept', value = 1)
+  X_train, X_test, y_train, y_test = tts(X, Y, test_size = 0.2, random_state = 42)
 
 init()
